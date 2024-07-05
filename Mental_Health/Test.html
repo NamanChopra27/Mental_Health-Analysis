@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Pop-up</title>
+    <style>
+        /* Add your custom styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff; /* White background for the rest of the page */
+            color: #000; /* Black text for the rest of the page */
+        }
+        .popup {
+            display: none;
+            background: #000; /* Black background for the form */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            text-align: left; /* Align text to the left */
+            color: #fff; /* White text for the form */
+        }
+        /* Add your other styles here */
+    </style>
+</head>
+<body>
+
+<!-- Questionnaire Pop-up -->
+<div id="questionnairePopup" class="popup">
+    <h2> <center>Questionnaire</center> </h2>
+    <!-- Your form goes here -->
+    <form id="questionnaireForm">
+        <!-- Include your questions and input fields -->
+        <div class="question active-question" id="question1">
+            <label for="gender">Choose your gender:</label><br>
+            <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question2">
+            <label for="age">Age:</label><br>
+            <select name="age" id="age">
+                <option value="18-24">18-24</option>
+                <option value="25-30">25-30</option>
+                <option value="31-40">31-40</option>
+                <option value="41-50">41-50</option>
+                <option value="51 and above">51 and above</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question3">
+            <label for="course">What is your course?</label><br>
+            <select name="course" id="course">
+                <option value="Engineering">Engineering</option>
+                <option value="Science">Science</option>
+                <option value="Arts">Arts</option>
+                <option value="Business">Business</option>
+                <option value="Other">Other</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question4">
+            <label for="yearOfStudy">Your current year of Study:</label><br>
+            <select name="yearOfStudy" id="yearOfStudy">
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+                <option value="Graduate/Postgraduate">Graduate/Postgraduate</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question5">
+            <label for="cgpa">What is your CGPA?</label><br>
+            <select name="cgpa" id="cgpa">
+                <option value="3.5 - 4.0">3.5 - 4.0</option>
+                <option value="3.0 - 3.49">3.0 - 3.49</option>
+                <option value="2.5 - 2.99">2.5 - 2.99</option>
+                <option value="2.0 - 2.49">2.0 - 2.49</option>
+                <option value="Below 2.0">Below 2.0</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question6">
+            <label for="depression">Do you have Depression?</label><br>
+            <select name="depression" id="depression">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="sometimes">Sometimes</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question7">
+            <label for="anxiety">Do you have Anxiety?</label><br>
+            <select name="anxiety" id="anxiety">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="sometimes">Sometimes</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question8">
+            <label for="panicAttack">Do you have Panic attack?</label><br>
+            <select name="panicAttack" id="panicAttack">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="sometimes">Sometimes</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question9">
+            <label for="specialist">Did you seek any specialist for treatment?</label><br>
+            <select name="specialist" id="specialist">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="sometimes">Sometimes</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="question" id="question10">
+            <label for="sleepSchedule">What is your sleep schedule?</label><br>
+            <select name="sleepSchedule" id="sleepSchedule">
+                <option value="Regular">Regular</option>
+                <option value="Irregular">Ir-regular</option>
+                <option value="Poor">Poor</option>
+            </select>
+            <br><br>
+        </div>
+        <!-- Add additional questions as needed -->
+
+        <!-- Submit Button -->
+        <center><button type="button"   onclick="showNextQuestion()"> Submit</button></center>
+    </form>
+</div>
+
+<script>
+    // Open the questionnaire pop-up when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("questionnairePopup").style.display = "block";
+    });
+
+    function showNextQuestion() {
+        // Find the currently active question
+        const currentQuestion = document.querySelector('.question.active-question');
+
+        // Hide the current question
+        currentQuestion.classList.remove('active-question');
+
+        // Find the next question
+        const nextQuestion = currentQuestion.nextElementSibling;
+
+        // If there is a next question, make it active
+        if (nextQuestion) {
+            nextQuestion.classList.add('active-question');
+        } else {
+            // If there are no more questions, submit the form
+            submitForm();
+        }
+    }
+
+    function submitForm() {
+        // Process and submit the form data
+        // You can customize this part based on your requirements
+
+        // For now, just close the pop-up and show a confirmation
+        document.getElementById("questionnairePopup").style.display = "none";
+        alert("Form submitted!");
+    }
+</script>
+
+<!-- Add this script at the end of your HTML file, just before the closing </body> tag -->
+<script>
+    // Open the questionnaire pop-up when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("questionnairePopup").style.display = "block";
+    });
+
+    function submitForm() {
+        // Get form data
+        const formData = {
+            age: document.getElementById('age').value,
+            cgpa: document.getElementById('cgpa').value,
+            anxiety: document.getElementById('anxiety').value,
+            panicAttack: document.getElementById('panicAttack').value
+            // Add more fields as needed
+        };
+
+        // Send form data to the server using Fetch API
+        fetch('/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(result => {
+            // Handle the result, you can update the UI accordingly
+            console.log(result);
+            alert(result.prediction);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error occurred during prediction.');
+        });
+    }
+</script>
+
+</body>
+</html>
